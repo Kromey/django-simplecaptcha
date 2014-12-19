@@ -31,7 +31,6 @@ The decorator will always add the captcha field to the end of your form. If this
 is undesirable for any reason, you can of course always manually render your form
 fields as [decribed in the Django docs](https://docs.djangoproject.com/en/1.7/topics/forms/#rendering-fields-manually).
 
-*TODO: Verify that the following works as I expect!*
 Another option is to simply add a "dummy" field to your form with the same name
 as that passed into the decorator. The decorator would then effectively replace
 the field in your form:
@@ -47,6 +46,11 @@ class MyForm(Form):
     captcha = CaptchaField()
     field3 = CharField()
 ```
+
+(NOTE: Since the decorator will *replace* the field of the same name, it does not
+matter what type of field you specify when using this approach. Because of the way
+Django processes Form classes, however, you *must* specify a Django field, or else
+this will not work.)
 
 Now when you render MyForm in your template, fields will be ordered precisely as
 they are in your source: field1, then field2, followed by captcha, and finally
