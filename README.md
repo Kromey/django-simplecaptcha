@@ -1,15 +1,12 @@
-django-simplecaptcha
-====================
+# django-simplecaptcha
 
 A textual captcha for Django using simple decorator syntax.
 
-Installation
-------------
+## Installation
 
 *TODO: Decide how this will be distributed, which will inform how it's installed*
 
-Using the Captcha
------------------
+## Using the Captcha
 
 Using simplecaptcha is simple:
 
@@ -26,16 +23,51 @@ done: the decorator takes care of adding the field and ensuring it is always
 updated when a new form instance is created, as well as validating bound forms
 and providing useful error messages for users.
 
-Note that the captcha fields are always added to the end of your form. If this
-is undesirable for any reason, you can either manually render the form fields in
-your templates, or else decorate a stub form and then subclass it with another
-form that adds the fields you want to come after.
+### Advanced Use
 
-Advanced Use
-------------
+#### Controlling Field Order
+
+The decorator will always add the captcha field to the end of your form. If this
+is undesirable for any reason, you can of course always manually render your form
+fields as [decribed in the Django docs](https://docs.djangoproject.com/en/1.7/topics/forms/#rendering-fields-manually).
+
+*TODO: Verify that the following works as I expect!*
+Another option is to simply add a "dummy" field to your form with the same name
+as that passed into the decorator. The decorator would then effectively replace
+the field in your form:
+
+```python
+from simplecaptcha.decorators import CaptchaForm
+from simplecaptcha.fields import CaptchaField
+
+@CaptchaForm('captcha')
+class MyForm(Form):
+    field1 = CharField()
+    field2 = CharField()
+    captcha = CaptchaField()
+    field3 = CharField()
+```
+
+Now when you render MyForm in your template, fields will be ordered precisely as
+they are in your source: field1, then field2, followed by captcha, and finally
+field3.
+
+#### Multiple Captcha Fields
 
 It is possible to add multiple captcha fields to your form simply by decorating
 your form multiple times. However note that field order in your form will be the
-*reverse* of the order that you write your decorators, i.e. if your first
-decorator adds the field "captchaone" and the second adds "captchatwo", in your
-form "captchatwo" will be first, followed by "captchaone".
+*reverse* of the order that you write your decorators:
+
+```python
+from simplecaptcha.decorators import CaptchaForm
+
+@CaptchaForm('captcha')
+@CaptchaForm('captcha2')
+class MyForm(Form):
+    pass
+```
+
+In this example, when MyForm is rendered in your template, captcha2 will appear
+*first*, and then captcha. This is a consequence of how decorators in Python are
+processed; you simply have to remember that the last captcha decorated into your
+form is the first one that will appear in your templates.
