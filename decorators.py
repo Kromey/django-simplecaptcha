@@ -14,6 +14,18 @@ def CaptchaForm(field_name):
     This would add a new form field named 'captcha' to the Django form MyForm.
     Nothing else is needed; the captcha field and widget expect to be left fully
     to their own devices, and tinkering with them may produce the unexpected.
+
+    It is also possible using this decorator to add multiple captchas to your
+    forms:
+
+    @CaptchaForm('captchatwo')
+    @CaptchaForm('captchaone')
+    class MyForm(Form):
+        pass
+
+    Note that the captchas are added to your fields in the inverse order that
+    the decorators appear in your source; in this example, 'captchaone' appears
+    first in the form, followed by 'captchatwo'.
     """
     def wrapper(orig_form):
         """The actual function that wraps and modifies the form"""
