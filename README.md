@@ -2,6 +2,40 @@
 
 A textual captcha for Django using simple decorator syntax.
 
+## So What Does it DO?
+
+simplecaptcha provides an easy decorator syntax to add a textual captcha to your
+Django forms. The captcha is a simple arithmetic question: Either add, subtract,
+or multiply two numbers between 1 and 10. No server-side context is needed, as
+the captcha uses cryptographic signatures to securely pass the context to the
+client, and then validate the supplied answer on the back end.
+
+In order to mitigate replay attacks, the signatures expire after a configurable
+amount of time (default 5 minutes): enough time to fill out and submit the form,
+but short enough to reduce the ability to reuse signatures with known answers.
+
+## Why Make Another One?
+
+There's lots of Django captchas out there, including more than one that uses
+arithmetic questions just like this one. So why do we need another?
+
+Simply put, the others all lack in flexibility. When I set out to find one for
+my form, I needed one that would allow me to manually render my fields; the
+first few I found, however, hardcoded the question (as a label) into the
+`format_output()` method, or even directly in the `render()` method itself.
+This meant I couldn't separately render the label where I need it for my design.
+I kept digging, and found another that offered the flexibility I needed in the
+layout, but put the captcha generation logic in the field's `__init__()` method.
+While this sounds great, Django's method of using class objects -- rather than
+instance objects -- means that you get only a single captcha question per
+server thread, period.
+
+So I sat down to write a captcha that would give me the flexibility I needed to
+fit into my front-end design, but that also would reliably generate a fresh
+captcha question each time the page was loaded.
+
+This is that captcha.
+
 ## Installation
 
 *TODO: Decide how this will be distributed, which will inform how it's installed*
