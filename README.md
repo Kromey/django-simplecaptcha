@@ -39,6 +39,10 @@ This is that captcha.
 ## Installation
 
 *TODO: Decide how this will be distributed, which will inform how it's installed*
+If you're impatient and just want to get started using it right away, just
+download the code and put it somewhere that your Django project cand find it;
+perhaps the simplest option is to just put it in your Django project as if it
+were any other app.
 
 ## Using the Captcha
 
