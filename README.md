@@ -11,9 +11,9 @@ A textual captcha for Django using simple decorator syntax.
 Using simplecaptcha is simple:
 
 ```python
-from simplecaptcha.decorators import CaptchaForm
+from simplecaptcha import captcha
 
-@CaptchaForm('captcha')
+@captcha
 class MyForm(Form):
     pass
 ```
@@ -36,10 +36,10 @@ as that passed into the decorator. The decorator would then effectively replace
 the field in your form:
 
 ```python
-from simplecaptcha.decorators import CaptchaForm
+from simplecaptcha import captcha
 from simplecaptcha.fields import CaptchaField
 
-@CaptchaForm('captcha')
+@captcha
 class MyForm(Form):
     field1 = CharField()
     field2 = CharField()
@@ -50,11 +50,32 @@ class MyForm(Form):
 (NOTE: Since the decorator will *replace* the field of the same name, it does not
 matter what type of field you specify when using this approach. Because of the way
 Django processes Form classes, however, you *must* specify a Django field, or else
-this will not work.)
+Django will ignore it and you won't get the desired effect.)
 
 Now when you render MyForm in your template, fields will be ordered precisely as
 they are in your source: field1, then field2, followed by captcha, and finally
 field3.
+
+#### Specifying the Field Name
+
+If for any reason you don't want your captcha field to be named "captcha", you
+can use the @captchaform decorator and supply the desired field name as an
+argument, like so:
+
+```python
+from simplecaptcha import captchaform
+
+@captchaform('securitycheck')
+class MyForm(Form):
+    pass
+```
+
+This will add a field named "securitycheck" to MyForm that will contain the
+form's captcha.
+
+If you wish to do this and use the method in the previous section to specify the
+field order, note that the "dummy" field you add must match the name you passed
+into the decorator.
 
 #### Multiple Captcha Fields
 
@@ -63,15 +84,16 @@ your form multiple times. However note that field order in your form will be the
 *reverse* of the order that you write your decorators:
 
 ```python
-from simplecaptcha.decorators import CaptchaForm
+from simplecaptcha import captchaform
 
-@CaptchaForm('captcha')
-@CaptchaForm('captcha2')
+@captchaform('captcha')
+@captchaform('captcha2')
 class MyForm(Form):
     pass
 ```
 
-In this example, when MyForm is rendered in your template, captcha2 will appear
-*first*, and then captcha. This is a consequence of how decorators in Python are
+In this example, when MyForm is rendered in your template, "captcha2" will appear
+*first*, and then "captcha". This is a consequence of how decorators in Python are
 processed; you simply have to remember that the last captcha decorated into your
 form is the first one that will appear in your templates.
+
