@@ -1,13 +1,13 @@
 from .fields import CaptchaField
 
 
-def CaptchaForm(field_name):
+def captchaform(field_name):
     """Decorator to add a simple captcha to a form
 
     To use this decorator, you must specify the captcha field's name as an
     argument to the decorator. For example:
 
-    @CaptchaForm('captcha')
+    @captchaform('captcha')
     class MyForm(Form):
         pass
 
@@ -18,8 +18,8 @@ def CaptchaForm(field_name):
     It is also possible using this decorator to add multiple captchas to your
     forms:
 
-    @CaptchaForm('captchatwo')
-    @CaptchaForm('captchaone')
+    @captchaform('captchatwo')
+    @captchaform('captchaone')
     class MyForm(Form):
         pass
 
@@ -34,7 +34,7 @@ def CaptchaForm(field_name):
         orig_init = orig_form.__init__
 
         def new_init(self, *args, **kwargs):
-            """This is the CaptchaForm replacement init method
+            """This is the captchaform replacement init method
 
             This method replaces a decorated form with one that properly handles
             ensuring that the captcha is always updated when the form is
