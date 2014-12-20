@@ -63,6 +63,19 @@ and providing useful error messages for users.
 
 ### Advanced Use
 
+#### Configuring simplecaptcha
+
+simplecaptcha, as its name implies, is simple. It works straight out of the box
+without any need to add any configuration in your Django project. However, if
+you do want to modify its behavior, you can do that as well, by simply adding
+any of these settings to your Django project's settings module:
+
+ * SIMPLECAPTCHA_DURATION: Defines how long (in seconds) a captcha is considered
+   valid for; default: 300 seconds (5 minutes)
+ * SIMPLECAPTCHA_ITERATIONS: The cryptographic signature passed to the client
+   and used to validate the captcha is hashed multiple times for security. You
+   can change the number of iterations used with this setting; default: 1024
+
 #### Controlling Field Order
 
 The decorator will always add the captcha field to the end of your form. If this
