@@ -3,20 +3,11 @@ import time
 
 
 from django import forms
-from django.conf import settings
 from django.utils.crypto import salted_hmac
 from django.utils.safestring import mark_safe
 
 
-"""CAPTCHA_ITERATIONS defines how many hashing iterations are performed
-
-This can be set in Django's settings module; if left unset, it will default
-to using 1024 iterations.
-"""
-try:
-    CAPTCHA_ITERATIONS = settings.CAPTCHA_ITERATIONS
-except:
-    CAPTCHA_ITERATIONS = 1024
+from .settings import CAPTCHA_ITERATIONS
 
 
 class CaptchaWidget(forms.widgets.MultiWidget):

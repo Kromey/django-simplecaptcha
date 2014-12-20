@@ -3,22 +3,10 @@ import time
 
 from django import forms
 from django.core.exceptions import ValidationError
-from django.conf import settings
 
 
 from .widgets import CaptchaWidget
-
-
-"""CAPTCHA_DURATION defines how long, in seconds, a captcha is valid for
-
-This setting can either be supplied in your Django project's settings.py file,
-or left out; in the latter case, the default of 5 minutes will be used.
-"""
-try:
-    CAPTCHA_DURATION = settings.CAPTCHA_DURATION
-except:
-    # Valid for 5 minutes by default
-    CAPTCHA_DURATION = 60 * 5
+from .settings import CAPTCHA_DURATION
 
 
 class CaptchaField(forms.MultiValueField):
