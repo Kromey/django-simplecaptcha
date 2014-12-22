@@ -85,8 +85,8 @@ is undesirable for any reason, you can of course always manually render your for
 fields as [decribed in the Django docs](https://docs.djangoproject.com/en/1.7/topics/forms/#rendering-fields-manually).
 
 Another option is to simply add a "dummy" field to your form with the same name
-as that passed into the decorator. The decorator would then effectively replace
-the field in your form:
+as that used by the decorator. The decorator would then effectively replace the
+field in your form:
 
 ```python
 from simplecaptcha import captcha
@@ -111,9 +111,10 @@ field3.
 
 #### Specifying the Field Name
 
-If for any reason you don't want your captcha field to be named "captcha", you
-can use the @captchaform decorator and supply the desired field name as an
-argument, like so:
+If for any reason you don't want your captcha field to be named "captcha",  and
+you don't want to set `SIMPLECAPTCHA_DEFAULT_FIELD_NAME` in your Django settings
+module, you can use the `@captchaform` decorator and supply the desired field name
+as an argument, like so:
 
 ```python
 from simplecaptcha import captchaform
