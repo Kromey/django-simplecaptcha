@@ -38,3 +38,9 @@ to using 1024 iterations.
 """
 ITERATIONS = getsetting('ITERATIONS', default=1024)
 
+"""DEFAULT_FIELD_NAME is used as the field in the shortcut @captcha decorator
+
+If unset in Django's settings module, it defaults to 'captcha'
+"""
+DEFAULT_FIELD_NAME = getsetting('DEFAULT_FIELD_NAME', default='captcha')
+
