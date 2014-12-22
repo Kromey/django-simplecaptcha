@@ -70,11 +70,13 @@ without any need to add any configuration in your Django project. However, if
 you do want to modify its behavior, you can do that as well, by simply adding
 any of these settings to your Django project's settings module:
 
- * SIMPLECAPTCHA_DURATION: Defines how long (in seconds) a captcha is considered
+ * `SIMPLECAPTCHA_DURATION`: Defines how long (in seconds) a captcha is considered
    valid for; default: 300 seconds (5 minutes)
- * SIMPLECAPTCHA_ITERATIONS: The cryptographic signature passed to the client
+ * `SIMPLECAPTCHA_ITERATIONS`: The cryptographic signature passed to the client
    and used to validate the captcha is hashed multiple times for security. You
    can change the number of iterations used with this setting; default: 1024
+ * `SIMPLECAPTCHA_DEFAULT_FIELD_NAME`: The default field name used in the captcha
+   decorator; default: 'captcha'
 
 #### Controlling Field Order
 
