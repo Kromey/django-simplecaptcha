@@ -19,7 +19,7 @@ def getsetting(setting, default):
 This setting can either be supplied in your Django project's settings.py file,
 or left out; in the latter case, the default of 5 minutes will be used.
 """
-SIMPLECAPTCHA_DURATION = getsetting('SIMPLECAPTCHA_DURATION', 5 * 60)
+SIMPLECAPTCHA_DURATION = getsetting('SIMPLECAPTCHA_DURATION', default=5 * 60)
 
 
 """SIMPLECAPTCHA_ITERATIONS defines how many hashing iterations are performed
@@ -27,5 +27,5 @@ SIMPLECAPTCHA_DURATION = getsetting('SIMPLECAPTCHA_DURATION', 5 * 60)
 This can be set in Django's settings module; if left unset, it will default
 to using 1024 iterations.
 """
-SIMPLECAPTCHA_ITERATIONS = getsetting('SIMPLECAPTCHA_ITERATIONS', 1024)
+SIMPLECAPTCHA_ITERATIONS = getsetting('SIMPLECAPTCHA_ITERATIONS', default=1024)
 
