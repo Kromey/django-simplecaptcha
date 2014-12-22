@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 
 
 from .widgets import CaptchaWidget
-from .settings import SIMPLECAPTCHA_DURATION
+from .settings import DURATION
 
 
 class CaptchaField(forms.MultiValueField):
@@ -45,7 +45,7 @@ class CaptchaField(forms.MultiValueField):
             # Current time
             timestamp = time.time()
 
-            if float(data_list[1]) < timestamp - SIMPLECAPTCHA_DURATION:
+            if float(data_list[1]) < timestamp - DURATION:
                 raise ValidationError("Captcha expired, please try again", code='invalid')
             elif hashed != data_list[2]:
                 raise ValidationError("Incorrect answer", code='invalid')

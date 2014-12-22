@@ -7,7 +7,7 @@ from django.utils.crypto import salted_hmac
 from django.utils.safestring import mark_safe
 
 
-from .settings import SIMPLECAPTCHA_ITERATIONS
+from .settings import ITERATIONS
 
 
 class CaptchaWidget(forms.widgets.MultiWidget):
@@ -107,7 +107,7 @@ class CaptchaWidget(forms.widgets.MultiWidget):
         hashed = ''
 
         # Hashing multiple times increases the security of the signature
-        for _ in range(SIMPLECAPTCHA_ITERATIONS):
+        for _ in range(ITERATIONS):
             # We use Django's own "salted HMAC" for cryptographic signatures
             hashed = salted_hmac(timestamp, answer).hexdigest()
 
