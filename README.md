@@ -75,7 +75,7 @@ any of these settings to your Django project's settings module:
  * `SIMPLECAPTCHA_ITERATIONS`: The cryptographic signature passed to the client
    and used to validate the captcha is hashed multiple times for security. You
    can change the number of iterations used with this setting; default: 1024
- * `SIMPLECAPTCHA_DEFAULT_FIELD_NAME`: The default field name used in the captcha
+ * `SIMPLECAPTCHA_DEFAULT_FIELD_NAME`: The default field name used in the `captcha`
    decorator; default: 'captcha'
 
 #### Controlling Field Order
