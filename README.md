@@ -39,10 +39,13 @@ This is that captcha.
 ## Installation
 
 *TODO: Decide how this will be distributed, which will inform how it's installed*
+
 If you're impatient and just want to get started using it right away, just
-download the code and put it somewhere that your Django project cand find it;
-perhaps the simplest option is to just put it in your Django project as if it
-were any other app.
+download the code and put the `simplecaptcha` directory somewhere that Django
+can find it; as for me, I have this repo checked out to its own separate
+working directory, and then a symlink from my Django project (where it would be if
+it were a Django app) to the `simplecaptcha` directory makes it usable in my
+project.
 
 ## Using the Captcha
 
