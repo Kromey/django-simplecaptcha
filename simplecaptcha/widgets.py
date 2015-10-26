@@ -1,5 +1,6 @@
 import random
 import time
+import math
 
 
 from django import forms
@@ -83,6 +84,10 @@ class CaptchaWidget(forms.widgets.MultiWidget):
                 x, y = y, x
             answer = x - y
         else:
+            # Multiplication is hard, make it easier
+            x = math.ceil(x/2)
+            y = math.ceil(y/2)
+
             answer = x * y
             # Use a prettied-up HTML multiplication character
             operator = '&times;'
