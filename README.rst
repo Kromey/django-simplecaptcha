@@ -45,15 +45,19 @@ This is that captcha.
 Installation
 ------------
 
-*TODO: Decide how this will be distributed, which will inform how it's
-installed*
+From PyPi
+~~~~~~~~~
 
-If you're impatient and just want to get started using it right away,
-just download the code and put the ``simplecaptcha`` directory somewhere
-that Django can find it; as for me, I have this repo checked out to its
-own separate working directory, and then a symlink from my Django
-project (where it would be if it were a Django app) to the
-``simplecaptcha`` directory makes it usable in my project.
+(Recommended)
+Install from PyPi with a simple ``pip install django-simplecaptcha``.
+
+From Source
+~~~~~~~~~~~
+
+Download the source from GitHub, and simply make the ``simplecaptcha``
+module available to Python in some way; on *nix systems, a simple symlink
+in the root of your Django project to the ``simplecaptcha`` directory is
+probably the most straightforward solution.
 
 Using the Captcha
 -----------------
