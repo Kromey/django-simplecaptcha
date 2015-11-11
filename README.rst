@@ -55,7 +55,7 @@ From Source
 ~~~~~~~~~~~
 
 Download the source from GitHub, and simply make the ``simplecaptcha``
-module available to Python in some way; on *nix systems, a simple symlink
+module available to Python in some way; on \*nix systems, a simple symlink
 in the root of your Django project to the ``simplecaptcha`` directory is
 probably the most straightforward solution.
 
