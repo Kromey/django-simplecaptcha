@@ -54,10 +54,10 @@ Install from PyPi with a simple ``pip install django-simplecaptcha``.
 From Source
 ~~~~~~~~~~~
 
-Download the source from GitHub, and simply make the ``simplecaptcha``
-module available to Python in some way; on \*nix systems, a simple symlink
-in the root of your Django project to the ``simplecaptcha`` directory is
-probably the most straightforward solution.
+Download the source `from GitHub <https://github.com/Kromey/django-simplecaptcha>`__,
+and simply make the ``simplecaptcha`` module available to Python in some way; on
+\*nix systems, a simple symlink in the root of your Django project to the
+``simplecaptcha`` directory is probably the most straightforward solution.
 
 Using the Captcha
 -----------------
