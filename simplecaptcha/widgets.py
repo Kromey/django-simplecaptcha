@@ -37,7 +37,7 @@ class CaptchaWidget(forms.widgets.MultiWidget):
         """All we want to do is stick all the widgets together"""
         return ''.join(rendered_widgets)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         """Override the render() method to replace value with our current values
 
         This approach is based on the approach that Django's PasswordInput
@@ -46,7 +46,7 @@ class CaptchaWidget(forms.widgets.MultiWidget):
         our generated captcha.
         """
         value = self._values
-        return super().render(name, value, attrs)
+        return super().render(name, value, attrs=attrs, renderer=renderer)
 
     def generate_captcha(self):
         """Generated a fresh captcha
